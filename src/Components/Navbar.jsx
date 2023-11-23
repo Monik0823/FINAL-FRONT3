@@ -4,23 +4,11 @@ import React from 'react'
 
 const Navbar = () => {
 
-  const { state, dispatch } = useAppContext()
-
-  const changeTheme = () => {
-    dispatch({ type: Global.actionType[0].TOGGLE_THEME })
-    localStorage.theme = JSON.stringify(!state.theme)
-  }
-
   return (
-    <nav className='navbar'>
+    <nav>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-      <ul className='menu'>
-        <li><NavLink to="home">Home</NavLink></li>
-        <li><NavLink to="/contact">Contact</NavLink></li>
-        <li><NavLink to="/favs">Favoritos</NavLink></li>
-      </ul>
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button onClick={changeTheme}>Change theme</button>
+      <button>Change theme</button>
     </nav>
   )
 }
