@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { ContextGlobal } from './utils/global.context';
 import { Link } from 'react-router-dom'
 
 
@@ -7,28 +8,29 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
+  const { theme } = useContext(ContextGlobal)
 
 
-  
   return (
-    
+
     <nav className='navbar'>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-      <ul type= "none" className='menu'>
+      <ul type="none" className='menu'>
         <li>
-            <Link to='/home'>Home</Link>
+          <Link to='/home'>Home</Link>
         </li>
         <li>
-          <Link to='/fav'>Favorite</Link>
+          <Link to='/favs'>Favorite</Link>
         </li>
         <li>
-          <Link to='/contact'>Contact</Link>
+          <Link to='/contacto'>Contact</Link>
         </li>
       </ul>
 
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button>Change theme</button>
-    </nav>    
+      <button onClick={theme.handleChangeTheme}
+        style={{ background: theme.theme.background, color: theme.theme.font }}>Change theme</button>
+    </nav>
   )
 }
 

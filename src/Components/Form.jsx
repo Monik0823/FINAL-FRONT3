@@ -62,7 +62,6 @@ const Form = () => {
           <input
             type="text"
             placeholder="Ingresa tu email"
-            id='email'
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);

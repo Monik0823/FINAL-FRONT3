@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { ContextProvider } from "./Components/utils/global.context";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Routes/Home'
 import Favs from './Routes/Favs'
@@ -13,17 +14,19 @@ import NotFount from './Routes/NotFount';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
 
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}  >
-          <Route path='/home' element={<Home />} />
-          <Route path='/detail/:id?' element={<Detail />} />
-          <Route path='/fav' element={<Favs />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='*' element={<NotFount />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}  >
+            <Route path='/home' element={<Home />} />
+            <Route path='/dentista/:id' element={<Detail />} />
+            <Route path='/favs' element={<Favs />} />
+            <Route path='/contacto' element={<Contact />} />
+            <Route path='*' element={<NotFount />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
 
   </React.StrictMode>
 );
