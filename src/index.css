@@ -163,3 +163,10 @@ button {
 .mensaje-error {
   color: red;
 }
+
+.mensaje-exitoso{
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  font-size: larger;
+}

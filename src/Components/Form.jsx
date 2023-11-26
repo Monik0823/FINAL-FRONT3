@@ -80,7 +80,7 @@ const Form = () => {
         </div>
 
       </form>
-      {resultado && <p>{resultado}</p>}
+      {resultado && <p className="mensaje-exitoso">{resultado}</p>}
     </div>
   );
 };
