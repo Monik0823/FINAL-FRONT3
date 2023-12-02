@@ -6,7 +6,7 @@ import { ContextGlobal } from '../Components/utils/global.context'
 
 const Home = () => {
 
-  const { data } = useContext(ContextGlobal);
+  const [{data}] = useContext(ContextGlobal);
 
   return (
     <main className="" >
@@ -14,7 +14,7 @@ const Home = () => {
       <div className='card-grid'>
         {/* Aqui deberias renderizar las cards */}
         {
-          data.map ((dentista) => (
+          data?.map ((dentista) => (
             <Card 
               name={dentista.name}
               username={dentista.username}

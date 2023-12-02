@@ -1,7 +1,6 @@
-import { createContext, useState, useMemo, useEffect } from "react";
-import { callDentists } from "../../Services/dentistas.service";
-
-export const initialState = { theme: "", data: [] }
+import { createContext, useMemo, useReducer, useEffect } from "react";
+import { initializer, reducer } from "./reducer";
+import { setLocalStorage } from "./localStorage";
 
 export const themes = {
   light: {
@@ -14,46 +13,25 @@ export const themes = {
   }
 };
 
+export const initialState = { theme: themes.light, data: [] }
+
 export const ContextGlobal = createContext(undefined);
 
 export const ContextProvider = ({ children }) => {
   //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
-  const [data, setData] = useState([]);
+  const [{ theme, data }, dispatch] = useReducer (reducer, initialState, initializer);
+
+  const contextValue = useMemo(() => {
+    return [{ theme, data }, dispatch];
+  }, [{theme, data}, dispatch])
+
   useEffect(() => {
-    handleCallDentist();
-
-  }, [])
-  const handleCallDentist = async () => {
-    try {
-      const dentistas = await callDentists();
-      setData(dentistas)
-      console.log(dentistas);
-
-    } catch (error) {
-      console.error(error)
-    }
-
-  }
-  const dentistasValue = useMemo(() => ({
-    data,
-    setData
-  }), [data, setData])
-
-  const [theme, setTheme] = useState(themes.light);
-  const handleChangeTheme = () => {
-    if (theme === themes.dark) setTheme(themes.light)
-    if (theme === themes.light) setTheme(themes.dark)
-  }
-
-  const themeValue = useMemo(() => ({
-    theme,
-    handleChangeTheme
-  }), [theme, handleChangeTheme])
-  console.log(themeValue);
+    setLocalStorage("theme", theme);
+  }, [theme])
 
 
   return (
-    <ContextGlobal.Provider value={{ data: dentistasValue.data, theme: themeValue }}>
+    <ContextGlobal.Provider value={contextValue}>
       {children}
     </ContextGlobal.Provider>
   );

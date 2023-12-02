@@ -32,6 +32,7 @@ nav {
   padding: 2rem;
   width: 95%;
   height: 40px;
+
 }
 
 a {
@@ -57,14 +58,23 @@ footer {
   margin-top: 2rem;
 }
 
-footer>img {
-  width: 200px;
-  margin: 0;
+.imagenes {
+  width: 2rem;
+  background-color: #000000;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  
 }
 
 footer>p {
   margin: 0;
   padding-top: 0.7rem;
+}
+
+footer>ul {
+  display: flex;
+  width: 100px;
+  list-style: none;
 }
 
 form {
@@ -141,6 +151,7 @@ tr:nth-child(even) {
   margin-right: 32px;
   margin-top: 8px;
   font-size: large;
+  list-style: none;
 
 }
 
@@ -169,8 +180,8 @@ button {
 }
 
 .mensaje-exitoso{
-  color: green;
   font-weight: bold;
   text-align: center;
   font-size: larger;
 }
+
